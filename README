@@ -1,0 +1,13 @@
+This is a command line based todo list manager
+
+Enter Queue followed by a command:
+  addProject
+  addTask
+  removeProject
+  removeTask
+  done
+  review
+
+It saves in two files:
+  Q.txt - the entire list of projects and associated tasks
+  tasks.txt - a list of quick tasks and high priority tasks
