@@ -18,6 +18,7 @@ public class QueueIO {
     // read projects/tasks from Q.txt
     public static ArrayList<Project> readQ() {
         ArrayList<Project> projects = new ArrayList<Project>();
+        // if no Q file exists then just return an empty ArrayList of projects
         if (!(new File(pathToQ)).exists()) {
             System.out.println("No Q.txt file found");
             return projects;
@@ -26,6 +27,11 @@ public class QueueIO {
             BufferedReader br = new BufferedReader(new FileReader(pathToQ));
             String line = null;
             Project p = null;
+            // A lot of code to try and very generously read the Q file.
+            // The idea being that a user might be inclined to edit the file
+            // manually and might not be as accurate as we might like.
+            // We do our best to read the file, parse it accurately, and
+            // write it much more cleanly.
             while ((line = br.readLine()) != null) {
                 line = line.trim();
                 if (line.startsWith("Project:")) {
@@ -47,6 +53,9 @@ public class QueueIO {
                         projects.add(p);
                     }
                     int count = 0;
+                    // this is for intended future functionality that allows
+                    // users to specify the order in which tasks should be done
+                    // based on the number of *s in front of the task
                     while (line.startsWith("*")) {
                         line = line.substring(1).trim();
                         count++;
